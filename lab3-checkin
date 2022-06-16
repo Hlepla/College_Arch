@@ -1,0 +1,70 @@
+#include <cmath>
+#include <iostream>
+
+using namespace std;
+
+int main()
+
+{
+
+double a, b, c, d, r, s, sum;
+double pie= 3.14;
+cout <<" Enter number for a: " << flush;
+
+cin >> a;
+
+cout << " Enter number for b: " << flush;
+
+cin >> b;
+
+
+if (a <= 0 || b <= 0)
+{
+
+cout << " Invalid input, please try again" ;
+
+return 0;
+
+}
+
+
+r= pow(a, 2);
+s= pow(b,2);
+sum =( s+r)/2;
+d=sqrt(sum);
+
+c=d*2*pie;
+
+if (a==b)
+{
+
+cout << "The total of the circumference of the two radii " << a << " and " << b ; 
+
+cout << " is " << c ;
+}
+
+else
+{
+cout << " The total of the elipse of " << a << " and " << b ;
+
+cout << " is " << c ;
+}
+
+return 0;
+}
+
+
+Script started on Tue 03 Feb 2015 11:30:06 AM PST
+[?1034hbash-4.1$ nano lab2-ex2.cpp[C[C[C[C[C[C[C[C[C[Cls[Knano lab2-ex2.cpp[1P.cpp1.cpptxt.ex1.txt-ex1.txtcpp[1P.cpp2.cpp[C[C[C[C[C[C[C[C[C[Cls[Knano lab2-ex2.cpp[C[C[C[C[C[C[C[C[C[C[Knano lab2-ex2.cpp[C[C[C[C[C[C[C[C[C[C[K./ao[K.out
+ Enter number for a: 5
+ Enter number for b: 6
+ The total of the elipse of 5 and 6 is 34.6824bash-4.1$ ./a.out
+ Enter number for a: 4
+ Enter number for b: 4
+The total of the circumference of the two radii 4 and 4 is 25.12bash-4.1$ ./a.out
+ Enter number for a: 6
+ Enter number for b: 0
+ Invalid input, please try againbash-4.1$ exit
+exit
+
+Script done on Tue 03 Feb 2015 11:33:47 AM PST

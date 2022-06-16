@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+
+using namespace std ;
+
+class linkedlist {
+
+ private:
+
+  int id;
+  char type ;
+  string manufactuer ;
+  boolean deployed = false ;
+  int qudrant ;
+  int numofdeployment ;
+
+ public:
+
+
+
+};

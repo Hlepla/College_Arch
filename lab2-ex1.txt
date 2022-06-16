@@ -1,0 +1,18 @@
+Hayden Lepla
+1/27/15
+asgn 2.1
+
+1. the sum of 5 and 17 was 22 and the average was 11
+
+2. The sum of 6 and 17 was 23 and the average was 11
+
+3. When tying in the number 4.5 the program prints out   
+" The sum of 4 and 0 equals 4. the avearage is two"
+The program does not allow a second input to be added.
+
+After the program was fixed 
+
+2. The sum of 6 and 17 was 23 and the average was 11.5
+
+3. The sum of 4.5 and 5.5 was 10 and the average was 5
+

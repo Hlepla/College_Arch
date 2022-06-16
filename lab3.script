@@ -1,0 +1,14 @@
+Script started on Tue 03 Feb 2015 11:30:06 AM PST
+[?1034hbash-4.1$ nano lab2-ex2.cpp[C[C[C[C[C[C[C[C[C[Cls[Knano lab2-ex2.cpp[1P.cpp1.cpptxt.ex1.txt-ex1.txtcpp[1P.cpp2.cpp[C[C[C[C[C[C[C[C[C[Cls[Knano lab2-ex2.cpp[C[C[C[C[C[C[C[C[C[C[Knano lab2-ex2.cpp[C[C[C[C[C[C[C[C[C[C[K./ao[K.out
+ Enter number for a: 5
+ Enter number for b: 6
+ The total of the elipse of 5 and 6 is 34.6824bash-4.1$ ./a.out
+ Enter number for a: 4
+ Enter number for b: 4
+The total of the circumference of the two radii 4 and 4 is 25.12bash-4.1$ ./a.out
+ Enter number for a: 6
+ Enter number for b: 0
+ Invalid input, please try againbash-4.1$ exit
+exit
+
+Script done on Tue 03 Feb 2015 11:33:47 AM PST

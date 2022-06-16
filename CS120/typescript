@@ -1,0 +1,18 @@
+Script started on Mon 12 Oct 2015 02:28:57 PM PDT
+[?1034hbash-4.1$ ./a.out
+Enter input file: testInput.txt
+Do you wish to create an output file? (Y/N): Y
+ Enter output file name: testout.txt
+Total cost is: 1
+Total cost is: 73
+Total cost is: 61
+Total cost is: 896
+Total cost is: 1
+Total cost is: 157
+Total cost is: 0
+Total cost is: 708
+Total revenue is: 1897
+bash-4.1$ exit
+exit
+
+Script done on Mon 12 Oct 2015 02:29:25 PM PDT

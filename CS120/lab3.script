@@ -1,0 +1,32 @@
+Script started on Thu 17 Sep 2015 12:59:47 PM PDT
+[?1034hbash-4.1$ ./a.out
+Welcome to the ellipse calculator.
+Please enter a value for diameter A: 
+5
+Please enter a value for diameter B: 
+3
+The circumference of the ellipse with the values 5 and 3 is the total: 25.8931
+bash-4.1$ ./a.out
+Welcome to the ellipse calculator.
+Please enter a value for diameter A: 
+5
+Please enter a value for diameter B: 
+5
+The elipse is a circle! 
+The circumference of the ellipse with the values 5 and 5 is the total: 31.4
+bash-4.1$ ./a.out
+Welcome to the ellipse calculator.
+Please enter a value for diameter A: 
+0
+The input is invalid ( less than or equal to zero) please try again: 
+bash-4.1$ ./a.out
+Welcome to the ellipse calculator.
+Please enter a value for diameter A: 
+7
+Please enter a value for diameter B: 
+-7
+The input is invalid ( less than or equal to zero) please try again: 
+bash-4.1$ exit
+exit
+
+Script done on Thu 17 Sep 2015 01:01:14 PM PDT

@@ -1,0 +1,148 @@
+#! /bin/bash
+
+# Hayden Lepla
+# Hw3, cs270
+
+function main
+{
+    file=$1
+   # echo "comparing $file and $HOME/roundfile/$file"
+    if [ -e $HOME/roundfile/ ] && [ -d $HOME/roundfile/ ] ; then  # check if the directory
+
+        if [ -e $HOME/roundfile/$file ] ; then                # check for "re-deletes"
+
+            if  cmp -s "$file" "$HOME/roundfile/$file" ; then
+
+                echo "The files are the same"
+                mv "$file" "$HOME/roundfile/$file"
+
+
+            else
+                echo "The files are different"
+                declare -i index=1
+
+                until [ ! -e "$HOME/roundfile/$file.$index" ] ; do
+
+                    (($index++))
+
+                done
+
+                echo "$file.$index"
+                mv "$file" "$HOME/roundfile/$file.$index"
+
+                return
+            fi
+
+        fi
+
+        if [ -d $file ] ; then                                  # if the file is a directory, move
+
+            mv "$file" "$HOME/roundfile/"
+        fi
+
+        # already exists
+        mv "$file" "$HOME/roundfile/"
+
+    fi
+
+    if [ ! -e $HOME/roundfile/ ] ; then
+       echo "No directory found, creating one.."
+
+       mkdir $HOME/roundfile
+       mv "$file" "$HOME/roundfile/"
+
+    fi
+}
+
+function empty
+{
+    echo "Emptying roundfile..."
+    rm $HOME/roundfile/*
+
+}
+
+function flush
+{
+
+ echo "Deleting contents and Roundfile..."
+ rm $HOME/roundfile/*
+ rmdir $HOME/roundfile
+}
+
+
+function inter
+{
+    answer=y
+
+    echo "Are you sure you want to continue ( y or n): "
+    read answer
+
+    case "$answer" in
+
+        y)
+            empty
+            ;;
+
+        n)
+            echo "Canceling..."
+            exit 0
+
+    esac
+
+}
+
+function retrieve
+{
+    file=$1
+
+    if [ -e "$file" ] ; then
+
+        echo "The $file already exists, would you like to replace it?: "
+
+        select option in "y" "n" ; do
+
+            case $option in
+
+                y)
+                    mv "$HOME/roundfile/$file" "./"
+                    exit 1
+                    ;;
+
+                n)
+                    echo "Canceling..."
+                    exit 1
+                    ;;
+
+            esac
+        done
+    else
+        mv "$HOME/roundfile/$file" "$file" ;
+
+    fi
+
+}
+
+if ! getopts "efi:lr:" option ; then
+    echo "Argument is $1"
+    main $1
+    exit 0
+
+else
+
+    case "${option}" in
+
+        e)
+            empty
+            ;;
+
+        f)
+            flush
+            ;;
+        i)
+            inter
+            ;;
+        r)
+            retrieve $2
+            ;;
+    esac
+fi

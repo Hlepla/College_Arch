@@ -1,0 +1,57 @@
+Script started on Mon 04 May 2015 02:28:53 PM PDT
+[?1034hbash-4.1$ exit./a.out
+Enter robot data file: 
+robots.text
+Enter robot command: 
+D 3
+robot 2 deployed to qudrant 3
+Enter robot command: 
+d 5
+robot 1 deployed to qudrant 5
+Enter robot command: 
+R 2
+robot 2 retrieved from qudrant 3
+Enter robot command: 
+r 1
+robot 1 retrieved from qudrant 5
+Enter robot command: 
+R 6
+This robot is not deployed, try again: 
+Enter robot command: 
+d 5
+robot 1 deployed to qudrant 5
+Enter robot command: 
+D 3
+robot 2 deployed to qudrant 3
+Enter robot command: 
+? 1
+Robot:1
+Type: M
+Status: Deployed in quadrant: 5
+Num-deployments: 2
+Manufacturer: NASA
+Enter robot command: 
+? 3
+Robot:3
+Type: M
+Status: In miner holding bay 
+Num-deployments: 0
+Manufacturer: VOLTRON
+Enter robot command: 
+s
+Scouts deployed: 1
+Enter robot command: 
+S
+Scouts in holding bay: 4
+Enter robot command: 
+m
+Miners deployed: 1
+Enter robot command: 
+M
+Miners in holding bay: 3
+Enter robot command: 
+q
+bash-4.1$ exit
+exit
+
+Script done on Mon 04 May 2015 02:30:29 PM PDT

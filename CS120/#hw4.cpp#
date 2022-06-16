@@ -1,0 +1,113 @@
+/* Hayden Lepla
+   CS120
+   10/14/15
+   hw4
+*/
+
+#include <iostream>
+#include <string>
+
+using namespace std ;
+
+
+int huntfunc() ;
+
+int main()
+{
+  
+  char command ;
+  
+  
+  while (1){
+    
+    cout <<"Enter a command: " ;
+    cin >> command ;
+    
+    
+    if ( command == 'Z') {
+      
+      huntfunc() ;
+      
+    }
+    
+    else if (command == 'X' ) {
+      
+      return 0;
+      
+    }
+    
+    else {
+      
+      cout <<"Unrecognized command. " << endl ;
+      
+    }
+    
+    
+  }
+  
+  
+}
+
+
+int huntfunc()
+{
+  
+  int Low_range , Upper_range ;
+  
+  int z , o , m , b , e  ;
+  
+  
+  cout << "Enter search range: " ;
+  
+  cin >> Low_range ;
+  cin >> Upper_range ;
+  
+  
+  if (Low_range < 1 || Upper_range > 10000 || Low_range > Upper_range ) { // verfies proper search range 
+    
+    cout << "Invalid range specified. " << endl ; 
+    
+    return 1 ;
+    
+  }
+  
+  cout << "Hunting for zombies between: " << Low_range << " and " << Upper_range << endl ;
+  
+  for ( int i = Low_range ; i <= Upper_range ; i++) 
+    {
+      
+      int hunter ;  // variable name for a place holder
+      
+      hunter = i ;
+
+      int j = -1 ;
+
+      while(1) {
+	
+	z = hunter % 10 ;
+	o = hunter / 10 % 10 ;
+	m = hunter / 100 % 10 ;
+	b = hunter / 1000 % 10 ; 
+	e = hunter / 10000 % 10 ;
+	
+	hunter = z*z + o*o + m*m + b*b + e*e ;
+
+	j++ ; 
+	
+	if ( hunter == 1 ) {
+	  cout << i << " is a zombie number with an order of " << j << endl ;
+	  
+	  break ;
+	  
+	  
+	} else if ( j > 100 ) {
+	  
+	  break ;
+	  
+	}
+	
+      }	
+      
+    }
+  
+}

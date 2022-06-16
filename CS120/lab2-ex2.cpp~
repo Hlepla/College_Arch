@@ -1,0 +1,46 @@
+/*
+  Hayden Lepla
+  9/10/15
+  CS120-06
+  Lab 2
+  Assignment num: 2.2
+
+*/
+
+#include <iostream>
+#include <cmath>
+
+
+using namespace std;
+
+
+int main() 
+
+{
+
+
+  double a , b , total ;
+
+  double pi = 3.14 ;
+
+  cout <<"Welcome to the ellipse calculator." << endl ;
+
+  cout <<"Please enter a value for diameter A: " << endl ;
+  cin >> a ;
+
+
+  cout << "Please enter a value for diameter B: " << endl ;
+  cin >> b ;
+
+
+  
+  total = ( 2 * pi) * ( sqrt (   ( ( pow (a,2) + pow (b,2)) / 2 ) )  )    ;
+
+
+  cout << "The circumference of the ellipse with the values " << a << " " << <<"and " <<  b << " is the total: " << total << endl ;
+
+
+  return 0 ;
+
+}
+

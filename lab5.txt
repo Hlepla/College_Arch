@@ -1,0 +1,29 @@
+Script started on Sun 22 Feb 2015 05:38:43 PM PST
+[?1034hbash-4.1$ ./a.out
+ Enter customer number: 12345
+ Enter schedule number: 1
+ Enter energy rate : 450
+Your total cost is: 27.6475
+ Enter customer number: 213456
+ Enter schedule number: 11
+ Enter energy rate : 851
+ Enter demand rate : 15
+Your total cost is: 73.8332
+ Enter customer number: 2345678
+ Enter schedule number: 12
+ Enter energy rate : 234
+ Enter demand rate : 122123      11441     44
+ Discout rate? for yes type Y and for no type N : N
+Your total cost is: 96.0625
+ Enter customer number: 324567
+ Enter schedule number: 21
+ Enter energy rate : 10000
+ Enter demand rate : 70
+ Discout rate? for yes type Y and for no type N : Y
+Your total cost is: 768.2
+ Enter customer number: 0
+Total revenue is: 965.743
+bash-4.1$ exit
+exit
+
+Script done on Sun 22 Feb 2015 05:40:55 PM PST

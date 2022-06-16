@@ -1,0 +1,186 @@
+#!/usr/bin/perl
+# Hayden Lepla
+# CS270
+# Hw4
+
+use warnings ;
+use File::Copy;
+use File::Compare;
+use Switch;
+
+my $HOME = $ENV{"HOME"} ;
+
+for(my $i=0 ; $i < scalar(@ARGV); $i++)
+{
+    my $args = $ARGV[$i] ;
+
+    if (substr($args,0,1) eq "-")
+    {
+        my @options = split(//,$args);
+
+        for( my $j=1;$j<scalar(@options);$j++)
+        {
+            if ($options[$j] eq "e")
+            {
+                empty() ;
+            }
+
+            elsif($options[$j] eq "f")
+            {
+                flush();
+            }
+
+            elsif($options[$j] eq "i")
+            {
+                inter();
+            }
+
+            elsif($options[$j] eq "l")
+            {
+                list();
+            }
+
+            elsif($options[$j] eq "r")
+            {
+                retrieve();
+            }
+
+            else
+            {
+                #do nothing
+            }
+        }
+
+    }
+
+    else
+    {
+        $file = $ARGV[0] ;
+        #if no arguments are given, function normally
+        main($file);
+    }
+}
+
+sub main
+{
+
+    if( -e "$HOME/roundfile/" && -d "$HOME/roundfile/")  # check if the directory exsists
+    {
+        if(-e "$HOME/roundfile/$file") #checking for re-deletes
+        {
+            if(compare( "$file", "$HOME/roundfile/$file") == 0)
+            {
+                print "These files are the same\n" ;
+                system("mv \"$file\" \"$HOME/roundfile/$file\"") ;
+
+            }
+            else
+            {
+                print "The files are different\n" ;
+                my $counter = 1 ;
+
+                while (-e "$HOME/roundfile/$file.$counter")
+                    {
+                        $counter++ ;
+                    }
+
+                print "$file.$counter\n";
+                system("mv \"$file\" \"$HOME/roundfile/$file.$counter\"") ;
+            }
+
+        }
+
+        if(-d "$HOME/roundfile/$file") # check if the file is a directory
+        {
+            system("mv \"$file\" \"$HOME/roundfile/$file\"");
+
+        }
+
+        system("mv \"$file\" \"$HOME/roundfile/$file\""); # if none of the above , just move the file
+    }
+
+    if (! -e "$HOME/roundfile/")
+    {
+        print "Roundfile directory was not found, creating one...\n" ;
+
+        system("mkdir $HOME/roundfile") ;
+     #   print $file;
+        system("mv \"$file\" \"$HOME/roundfile/$file\"") ;
+
+    }
+}
+
+sub empty
+    {
+
+        print "Emptying roundflile...\n";
+        system(" rm -rf $HOME/roundfile/*");
+    }
+
+
+sub flush
+    {
+        print "Deleting contents and roundfile...\n";
+        system("rm -rf $HOME/roundfile") ;
+    }
+
+
+sub inter
+{
+    my $answer ;
+
+    print "Are you sure you want to continue (y or n):" ;
+
+    $answer= <STDIN>;
+    chomp $answer ;
+
+    if ($answer eq "Y")
+    {
+        main($file);
+        empty() ;
+    }
+
+    else
+        {
+            print "Exiting...\n" ;
+            return 0 ;
+
+
+        }
+}
+
+sub retrieve
+{
+    my $file = $ARGV[1] ;
+
+    if (-e "$file")
+        {
+            print "The file already exists, would you like to replace it?:" ;
+            my $var = <STDIN> ;
+            switch($var)
+                {
+
+                    case "y" {system("mv \"$HOME/roundfile/$file\" \"./\""); die; }
+
+                    case "n" {print "Cancelling...\n"; die ;}
+
+                    else {die("invalid operation, terminating...\n") ;}
+
+
+                }
+
+        }
+
+    else
+        {
+            system ("mv \"$HOME/roundfile/$file\" \"$file\"") ;
+
+        }
+
+}
+
+sub list
+{
+    system("ls -l \"$HOME/roundfile/\"");
+
+}

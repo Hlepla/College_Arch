@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+#include "Inval.h"
+using namespace std ;
+
+  void Inval :: setinput_base (int value){
+
+    inbase = value ;
+  }
+
+
+void Inval :: setNumber (string values){
+
+
+  number = values;
+}
+
+
+void Inval :: convertdec(output.inbase){
+
+
+
+
+
+}
+
+
+void PrintAsBase(){
+
+  int decval=0;
+  
+  for ( int i = 0 ; i < number.size();i++){
+
+    decval += number[i] * pow(inbase , number.size()-1-i);
+  }
+
+}

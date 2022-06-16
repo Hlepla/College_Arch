@@ -1,0 +1,95 @@
+/* Hayden Lepla
+   Cs 120
+   03/25/15
+   hw4
+*/
+
+#include <iostream>
+#include <string> 
+#include <sstream>
+using namespace std ;
+
+double SimDay();
+void viewSimDay();
+void workers();
+void Commands();
+void display();
+
+int simday = 1 ;
+
+double queen = 1  , workerB = 8 , MicroPollen = 0.0 , MicroNectar = 0.05 , MicroWater = 0.0 , MicroPropolis = 0.0 ; 
+
+int main() {
+  
+  cout << " )8( The Hundred-Acre Apiary Hive Simulator )8( " << endl;
+
+  Commands();
+  return 0;
+
+
+}
+
+void Commands() {
+  string command ;
+  
+ Label1:
+  
+   do {
+    
+  cout << "Enter a command: " ;
+  cin >> command ;
+     
+  if( command == "T" ) {
+    simday = simday +1 ;
+
+  }
+  
+  if ( command == "?") {
+    
+    cout << "Error: ? command requires 1 operand. " << endl ;
+    
+  }
+  
+  if ( command == "??") {
+    
+    cout << "Operand to ? command must be one of (FTW). " << endl ;
+    
+  }
+  
+  if ( command == "?F"){
+    display();
+  }
+  
+  if (command == "?W"){
+    
+    workers();
+  }
+  if ( command == "?T"){
+
+    cout << "It is sim-day " << simday << "\n" ;
+  }
+
+   }  while( command == "T" || command == "??"|| command == "?" || command == "WminNNN" || command == "WplusNNN" || command == "?F" || command == "?T" || command == "?W" || command != "X" );
+
+}
+
+
+double SimDay(){
+
+
+}
+
+void display(){
+
+
+
+}
+
+void workers(){
+
+}
+
+void viewSimDay(){
+
+}
+

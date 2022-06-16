@@ -1,0 +1,44 @@
+Script started on Thu 02 Apr 2015 12:13:40 PM PDT
+[?1034hbash-4.1$ exitvi test.cppls[Kpwdcd testsls[Kexit./a.outg++ lab10.cpp[C[C[C[C[C[C[C[C[C[C[6P./a.out
+Enter file Name 
+data.test  xt
+total of number of students: 30
+Mean value is: 66.2333
+Standard deviation is: 15.2737
+Student ID  Grade
+101          C
+102          C
+103          D
+104          C
+105          A
+106          C
+107          B
+108          C
+109          B
+110          B
+111          C
+112          D
+113          C
+114          C
+115          C
+116          A
+117          C
+118          D
+119          D
+120          C
+121          C
+122          B
+123          D
+124          F
+125          B
+126          D
+127          B
+128          F
+129          C
+130          D
+bash-4.1$ end
+bash: end: command not found
+bash-4.1$ exit
+exit
+
+Script done on Thu 02 Apr 2015 12:14:09 PM PDT

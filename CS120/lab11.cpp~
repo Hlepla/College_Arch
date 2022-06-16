@@ -1,0 +1,42 @@
+/*Hayden Lepla
+  11/18/15
+  CS120-06
+  Lab11
+  Assign:11.1
+*/
+
+#include <iostream>
+#include <string>
+#include "Inval.h"
+using namespace std;
+
+int main(){
+
+  int base , Inbase;
+  string outbase ;
+  Inval output ;
+
+
+  while(1){
+
+    cin >> base >> Inbase >>  outbase ; // reads the base, number value, and bases to convert
+
+  if ( base < 2 || base > 16){
+
+    cout << "Invalid inbase " << Inbase << endl ;
+    cout << "Program terminating.." << endl ;
+    break;
+  }
+
+  output.setinput_base(base); // sets base to inbase private method
+  output.setNumber(Inbase); // sets number that will be converted to number private method
+  output.convertdec(inbase,number); // takes inbase number  to convert to base 10
+  output.PrintAsBase(); // takes base 10 number and converts to other bases
+
+
+
+
+
+  }
+  return 0 ;
+}

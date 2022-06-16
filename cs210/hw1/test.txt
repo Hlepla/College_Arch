@@ -1,0 +1,14 @@
+hello world!
+
+The lazy dog jumped over the lazy moon.
+
+
+int main()
+{
+
+
+	cout << "test" << endl ;
+
+return 0 ;
+
+}

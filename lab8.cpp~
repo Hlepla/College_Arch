@@ -1,0 +1,79 @@
+/* Hayden Lepla
+   cs120
+   3/10/15
+   lab8
+*/
+
+#include <curses.h> // the curses library
+#include <iostream>
+using namespace std ;
+
+const int MAXX = 40 ; // max size of the room
+const int MAXY = 20 ;
+
+void setup ( char[][MAXY] , int x, int y ) ; // room setup
+void print ( char  room [MAXX] [MAXY]);
+
+int main()
+{
+  char c; // new
+  WINDOW *wnd;
+  char room[MAXX][MAXY]; // stores the room
+  int x = MAXX/2 , y = MAXY/2 ; // robot's initial location
+
+  wnd = initscr(); // intitializes the window
+  clear();        // clears the window
+  refresh();     // reprints the window
+
+  setup(room, x, y); // setup the room with the robot 
+  
+  print(room);      // write this function !!
+  while ((c = getch()) != 'q'); // new
+  endwin() ;       // frees the screen for normal uses
+
+}
+
+void setup( char r[] [MAXY], int x, int y)
+{
+
+  for( int i=0 ; i < MAXX ; i++)
+    {
+      for(int j= 0 ; j < MAXY ; j++)
+	{
+	  r[i][j] = ' ' ; // empty the room
+	}
+    }
+
+  for (int i = 0 ; i < MAXY ; i++) {
+    r[0][i] =  '|' ; // left wall
+    r[MAXX - 1][i] = '|' ; // right wall
+  }
+
+  for(int i = 0; i < MAXX ; i++ ) {
+    r[i][0] = '-' ; // top wall
+    r[i][MAXY-1] = '-' ; // bottom wall
+  }
+
+  r[x][y] = 'R' ; // place the robot
+}
+
+
+
+
+
+void print( char  room [MAXX][MAXY]) {
+
+  for( int i=0 ; i < MAXX ; i++)
+    {
+      for(int j= 0 ; j < MAXY ; j++)
+        {
+	  move(i,j) ;
+	  insch(room[i][j]) ;
+        }
+    }
+  refresh();
+  return;
+}
+
+
+

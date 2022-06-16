@@ -1,0 +1,159 @@
+D      [0-9]
+E        [Ee][+-]?{D}+
+L        [a-zA-Z_]
+FS       (f|F|l|L)
+IS       (u|U|l|L)
+WHITE        [ \t\f]*
+LITERAL      \"(\\.|[^\\"])*\"
+
+%{
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "ytab.h"
+#include "main.c"
+
+
+extern int yychar;
+
+void lexerr(char *s);
+void handle_include();
+
+/* #define DEBUG */
+
+extern int line_num;
+int line_num = 1;
+int errors = 0;
+char *saved_yyin;
+Token *yytoken;
+%}
+
+%%
+
+\n                      { line_num++; }
+[ \t\f]+                { }
+
+"/*"([^*]|"*"+[^/*])*"*"+"/" { }
+
+"break"                 { yytoken=mallocate_token(BREAK); return BREAK; }
+"double"                { yytoken=mallocate_token(DOUBLE); return DOUBLE; }
+"class"                 { yytoken=mallocate_token(CLASS); return CLASS; }
+"else"                  { yytoken=mallocate_token(ELSE); return ELSE; }
+"false"                 { yytoken=mallocate_token(FALSE); return FALSE; }
+"for"                   { yytoken=mallocate_token(FOR); return FOR; }
+"if"                    { yytoken=mallocate_token(IF); return IF; }
+"int"                   { yytoken=mallocate_token(INT); return INT; }
+"list"                  { yytoken=mallocate_token(LIST); return LIST;}
+"null"                  { yytoken=mallocate_token(NULL_KEY); return NULL_KEY;}
+"return"                { yytoken=mallocate_token(RETURN_KEY); return RETURN_KEY;}
+"string"                { yytoken=mallocate_token(STRING); return STRING;}
+"table"                 { yytoken=mallocate_token(TABLE); return TABLE;}
+"true"                  { yytoken=mallocate_token(TRUE); return TRUE; }
+"void"                  { yytoken=mallocate_token(VOID); return VOID; }
+"while"                 { yytoken=mallocate_token(WHILE); return WHILE; }
+
+"("                     { yytoken=mallocate_token(OPEN_P); return OPEN_P; }
+")"                     { yytoken=mallocate_token(CLOSE_P); return CLOSE_P; }
+"["                     { yytoken=mallocate_token(OPEN_SB); return OPEN_SB; }
+"]"                     { yytoken=mallocate_token(CLOSE_SB); return CLOSE_SB; }
+
+"-"                     { yytoken=mallocate_token(SUB); return SUB; }
+"!"                     { yytoken=mallocate_token(UNARY_NEG); return UNARY_NEG; }
+d/[0-9]*               { yytoken=mallocate_token(DICEROLL); return DICEROLL; }
+"#"                     { yytoken=mallocate_token(UNARY_SIZE); return UNARY_SIZE; }
+
+"*"                     { yytoken=mallocate_token(MULT); return MULT; }
+"/"                     { yytoken=mallocate_token(DIV); return DIV; }
+"%"                     { yytoken=mallocate_token(MOD); return MOD; }
+
+"+"                     { yytoken=mallocate_token(ADD); return ADD; }
+
+"<"                     { yytoken=mallocate_token(LESS_T); return LESS_T; }
+"<="                    { yytoken=mallocate_token(LESS_TE); return LESS_TE; }
+">"                     { yytoken=mallocate_token(GREAT_T); return GREAT_T; }
+">="                    { yytoken=mallocate_token(GREAT_TE); return GREAT_TE; }
+
+"=="                    { yytoken=mallocate_token(EQUAL); return EQUAL; }
+"!="                    { yytoken=mallocate_token(NOT_EQUAL); return NOT_EQUAL; }
+
+"&&"                    { yytoken=mallocate_token(LOG_AND); return LOG_AND;}
+
+"||"                    { yytoken=mallocate_token(LOG_OR); return LOG_OR; }
+
+"="                     { yytoken=mallocate_token(ASSIGN); return ASSIGN; }
+"+="                    { yytoken=mallocate_token(INCREMENT); return INCREMENT; }
+"-="                    { yytoken=mallocate_token(DECREMENT); return DECREMENT; }
+":=:"                   { yytoken=mallocate_token(SWAP); return SWAP; }
+";"                     { yytoken=mallocate_token(SEMICOLON); return SEMICOLON; }
+
+{D}+{IS}?               { yytoken=mallocate_token(INTLITERAL); return INTLITERAL; }
+
+{D}+{E}{FS}?            { yytoken=mallocate_token(FLOATLITERAL); return FLOATLITERAL; }
+{D}*"."{D}+({E})?{FS}?  { yytoken=mallocate_token(FLOATLITERAL); return FLOATLITERAL; }
+{D}+"."{D}*({E})?{FS}?  { yytoken=mallocate_token(FLOATLITERAL); return FLOATLITERAL; }
+
+{LITERAL}               { yytoken=mallocate_token(STRGLITERAL); return STRGLITERAL; }
+
+"{"                     { yytoken=mallocate_token(OPEN_CB); return OPEN_CB; }
+"}"                     { yytoken=mallocate_token(CLOSE_CB); return CLOSE_CB; }
+
+[a-zA-Z][a-zA-Z0-9]{0,11}   { yytoken=mallocate_token(IDENTIFIER); return IDENTIFIER; }
+"\""                    { yytoken=mallocate_token(QUOTE); return QUOTE; }
+ .                      { lexerr(yytext); }
+
+%%
+
+int main(int argc, char* argv[])
+{
+  FILE *fp;
+  int tp;;
+ TokenL *head = (TokenL*) malloc(sizeof(TokenL));
+ TokenL *tail ;
+
+ // initialize linked list
+ head->t = NULL;
+ head->next = NULL;
+ tail = head;
+
+int i;
+for(i=1;i<argc;i++)
+{
+  fp = fopen(argv[i],"r");
+saved_yyin = argv[i];
+  yyin = fp;
+
+  if(fp == NULL)
+    {
+      printf("Error: Could not open file\n");
+      return -1;
+    }
+
+  while((tp=yylex()) !=0)
+    {
+      if(tp == 1)
+        {
+          printf("yylex has thrown an error\n");
+          printf("value of tp: %d",tp);
+          return -1;
+        }
+
+   tail = add_node(tail,yytoken);
+
+    }
+ fclose(fp);
+line_num = 1;
+
+}
+ print(head);
+  return 0;
+
+}
+
+/*
+ * Return 1 if done, 0 if yyin points at more input
+ */
+int yywrap()
+{
+  return 1;
+}

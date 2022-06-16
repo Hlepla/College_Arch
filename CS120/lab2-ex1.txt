@@ -1,0 +1,16 @@
+Hayden Lepla
+9/10/15
+CS 120-06
+Assignment num: 2.1
+
+
+. When 5 and 17 are inputed into the program, it prints " The sum of 5 plus 17 is 22. The average of your number is 11."
+
+. When 6 and 17 are inputed into the program, the program prints " The sum of 6 plus 17 is 23. The average of your number is 11."
+
+. When 4.5 and 5.5 are inputed into the program, the program skips input on  the second number and right away prints " Please enter another number: The sum of 4 plus 0 is 4. The average of your numbers is 2."
+
+. When the variables x and y are changed to type float, the program prints the same statements as before when x and y where of type int for the numbers 5, 6 and 17.
+
+. When 4.5 and 5.5 are inputed into the program are the variables are now type float, the program prints " The sum of 4.5 and 5.5 is 10. The average of your numbers is 5."
+
